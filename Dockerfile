@@ -1,6 +1,6 @@
-FROM nvidia/cuda:8.0-devel-ubuntu16.04
+FROM nvidia/cuda:11.2.0-runtime-ubuntu20.04
 
-MAINTAINER Anthony Tatowicz
+MAINTAINER Zoltan Hanko
 
 WORKDIR /
 
@@ -31,19 +31,19 @@ RUN git clone https://github.com/ethereum-mining/ethminer.git; \
     git checkout tags/v0.19.0 
 
 # Build
-RUN cd ethminer; \
-    mkdir build; \
-    cd build; \
-    cmake .. -DETHASHCUDA=ON -DETHASHCL=OFF -DETHSTRATUM=ON; \
-    cmake --build .; \
-    make install;
+#RUN cd ethminer; \
+#    mkdir build; \
+#    cd build; \
+#    cmake .. -DETHASHCUDA=ON -DETHASHCL=OFF -DETHSTRATUM=ON; \
+#    cmake --build .; \
+#    make install;
 
 # Env setup
-ENV GPU_FORCE_64BIT_PTR=0
-ENV GPU_MAX_HEAP_SIZE=100
-ENV GPU_USE_SYNC_OBJECTS=1
-ENV GPU_MAX_ALLOC_PERCENT=100
-ENV GPU_SINGLE_ALLOC_PERCENT=100
+#ENV GPU_FORCE_64BIT_PTR=0
+#ENV GPU_MAX_HEAP_SIZE=100
+#ENV GPU_USE_SYNC_OBJECTS=1
+#ENV GPU_MAX_ALLOC_PERCENT=100
+#ENV GPU_SINGLE_ALLOC_PERCENT=100
 
 # ENTRYPOINT ["/usr/local/bin/ethminer", "-U"]
 ENTRYPOINT ["/usr/bin/bash"]
