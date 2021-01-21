@@ -1,5 +1,6 @@
-# Ethereum CUDA Miner
+Update of the docker-etherminer's stuff from Anthony-Tatowicz.
 
+# Ethereum CUDA Miner
 
 ### Docker container for Ethereum mining with CUDA.
 
