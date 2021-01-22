@@ -11,7 +11,7 @@ RUN apt-get update \
     && apt-get update \
     && apt-get install -y git \
      cmake \
-     libcryptopp-dev \
+     libcrypto++-dev \
      libleveldb-dev \
      libjsoncpp-dev \
      libjsonrpccpp-dev \
