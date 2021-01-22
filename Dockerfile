@@ -36,7 +36,7 @@ ENV GPU_TEMP_START=50
 # in the container launch.
 CMD ["bash", "-c", "/usr/local/bin/ethminer -U --api-port ${ETHMINER_API_PORT} \
 --HWMON 2 --tstart ${GPU_TEMP_START} --tstop ${GPU_TEMP_STOP} --exit \
---report-hashrate --failover-timeout 5 -P
+--report-hashrate --failover-timeout 5 -P \
 -P stratums1+tls12://$ETH_WALLET.$WORKER_NAME@eu1.whalesburg.com:6666 \
 -P stratums1+tls12://$ETH_WALLET.$WORKER_NAME@eu2.whalesburg.com:6666"]
 
