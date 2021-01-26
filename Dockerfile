@@ -36,7 +36,7 @@ RUN git clone https://github.com/ethereum-mining/ethminer.git; \
 
 # Patch as sm_30 is not supported. Then build. Use all cores.
 RUN sed -i '/sm_30/d' /ethminer/libethash-cuda/CMakeLists.txt; \
-    cd ethminer; \
+    cd /ethminer; \
     mkdir build; \
     cd build; \
     cmake .. -DETHASHCUDA=ON -DAPICORE=ON -DETHASHCL=OFF -DBINKERN=OFF; \
