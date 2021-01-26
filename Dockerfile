@@ -34,19 +34,20 @@ RUN git clone https://github.com/ethereum-mining/ethminer.git; \
     git submodule update --init --recursive; \
     git checkout tags/v0.19.0
 
-# Build. Use all cores.
-#RUN cd ethminer; \
-#    mkdir build; \
-#    cd build; \
-#    cmake .. -DETHASHCUDA=ON -DAPICORE=ON -DETHASHCL=OFF -DBINKERN=OFF; \
-#    cmake --build . -- -j; \
-#    make install;
+# Patch as sm_30 is not supported. Then build. Use all cores.
+RUN sed -i '/sm_30/d' /ethminer/libethash-cuda/CMakeLists.txt; \
+    cd ethminer; \
+    mkdir build; \
+    cd build; \
+    cmake .. -DETHASHCUDA=ON -DAPICORE=ON -DETHASHCL=OFF -DBINKERN=OFF; \
+    cmake --build . -- -j; \
+    make install;
 
 # Miner API port inside container
 ENV ETHMINER_API_PORT=3000
 EXPOSE ${ETHMINER_API_PORT}
 
-# Prevent GPU overheading by stopping in 80C and starting again in 50C
+# Prevent GPU overheading by stopping in 85C and starting again in 50C
 ENV GPU_TEMP_STOP=85
 ENV GPU_TEMP_START=50
 
